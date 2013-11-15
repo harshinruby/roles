@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bookafy</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<% flash.each do |name, msg| %>
+	  <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+	    <a class="close" data-dismiss="alert">×</a>
+	    <%= msg %>
+	  </div>
+	<% end %>
+	<% if user_signed_in? %>
+	<p> Hi <%= current_user.name%>, your type is <%= current_user.role_type %> <br />
+		<hr />
+	  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %> | <%= link_to('Edit registration', edit_user_registration_path) %>  |
+		<% if current_user.role_type == "Client"%>
+	  		<%= link_to("Edit Account", edit_client_path(current_user.role_id))%>
+		<% elsif current_user.role_type == "TeamLeader" %>
+			<%= link_to("Edit Account", edit_team_leader_path(current_user.role_id))%>
+		<% elsif current_user.role_type == "Worker"%>
+			<%= link_to("Edit Account", edit_worker_path(current_user.role_id))%>
+		<% else%>
+			<p> User type not found </p>
+		<% end %>
+	<% else %>
+	  <%= link_to('Login', new_user_session_path)  %> | <%= link_to('Register', new_client_path)%> | <%=link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+	<% end %>
+
+	
+
+<div id="user_nav">
+  <% if current_facebooker %>
+  <p> Your type is <%= current_facebooker.role_type %></p>
+    Signed in as <strong><%= current_facebooker.name %></strong>!
+    <%= link_to "Sign out", signout_path, id: "sign_out" %>    
+  <% end %>
+</div>
+
+
+	
+<%= yield %>
+
+</body>
+</html>

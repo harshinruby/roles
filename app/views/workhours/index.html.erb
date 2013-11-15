@@ -1,0 +1,31 @@
+<h1>Listing workhours</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Working day</th>
+      <th>Start time</th>
+      <th>End time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workhours.each do |workhour| %>
+      <tr>
+        <td><%= workhour.working_day %></td>
+        <td><%= workhour.start_time %></td>
+        <td><%= workhour.end_time %></td>
+        <td><%= link_to 'Show', workhour %></td>
+        <td><%= link_to 'Edit', edit_workhour_path(workhour) %></td>
+        <td><%= link_to 'Destroy', workhour, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Workhour', new_workhour_path %>

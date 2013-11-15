@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  working_day: MyString
+  start_time: 2013-11-15 22:24:03
+  end_time: 2013-11-15 22:24:03
+
+two:
+  working_day: MyString
+  start_time: 2013-11-15 22:24:03
+  end_time: 2013-11-15 22:24:03

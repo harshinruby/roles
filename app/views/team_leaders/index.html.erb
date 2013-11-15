@@ -1,0 +1,27 @@
+<h1>Listing team_leaders</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number of workers</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team_leaders.each do |team_leader| %>
+      <tr>
+        <td><%= team_leader.number_of_workers %></td>
+        <td><%= link_to 'Show', team_leader %></td>
+        <td><%= link_to 'Edit', edit_team_leader_path(team_leader) %></td>
+        <td><%= link_to 'Destroy', team_leader, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Team leader', new_team_leader_path %>
